@@ -8,39 +8,40 @@ Created on Tue Mar 12 12:29:28 2019
 
 class Student:
     def __init__(self, cwid, first_name, last_name, gender, gpa):
-        self.__cwid = cwid
-        self.__first_name = first_name
-        self.__last_name = last_name
-        self.__gender = gender
-        self.__gpa = gpa
-    
-    @property
+        self._cwid = cwid
+        self._first_name = first_name
+        self._last_name = last_name
+        self._gender = gender
+        self._gpa = gpa
+        
     def get_cwid(self):
-        return self.__cwid
-    @set_cwid.setter
+        return self._cwid
     def set_cwid(self, cwid):
-        self.__cwid = cwid
+        self._cwid = cwid
+    cwid = property(get_cwid, set_cwid)
         
-    @property
     def get_first_name(self):
-        return self.__first_name
+        return self._first_name
     def set_first_name(self, first_name):
-        self.__first_name = first_name
-        
-    @property
-    def get_last_name(self):
-        return self.__last_name
-    def set_last_name(self, last_name):
-        self.__last_name = last_name
+        self._first_name = first_name
+    first_name = property(get_first_name, set_first_name)
     
-    @property
+    def get_last_name(self):
+        return self._last_name
+    def set_last_name(self, last_name):
+        self._last_name = last_name
+    last_name = property(get_last_name, set_last_name)
+    
     def get_gender(self):
-        return self.__gender
+        return self._gender
     def set_gender(self, gender):
-        self.__gender = gender
-        
-    @property
+        self._gender = gender
+    gender = property(get_gender, set_gender)
+
     def get_gpa(self):
-        return self.__gpa
+        return self._gpa
     def set_gpa(self, gpa):
-        self.__gpa = gpa
+        self._gpa = gpa
+    gpa = property(get_gpa, set_gpa)
+    
+    def student(l)
