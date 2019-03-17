@@ -19,7 +19,7 @@ class Student:
     def set_cwid(self, cwid):
         self._cwid = cwid
     cwid = property(get_cwid, set_cwid)
-        
+
     def get_first_name(self):
         return self._first_name
     def set_first_name(self, first_name):
@@ -44,4 +44,16 @@ class Student:
         self._gpa = gpa
     gpa = property(get_gpa, set_gpa)
     
-    def student(l)
+def student(student_list):
+    student = Student(student_list[0], student_list[1], student_list[2], student_list[3], student_list[4])
+    student.cwid = student_list[0]
+    student.first_name = student_list[1]
+    student.last_name = student_list[2]
+    student.gender = student_list[3]
+    student.gpa = student_list[4]
+    return student
+    
+a_list = [12345678, 'brenda', 'song', 'f', 5.2]
+new_student = student(a_list)
+print(new_student)
+    
