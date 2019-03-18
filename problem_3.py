@@ -5,8 +5,7 @@ Created on Sun Mar 17 23:21:15 2019
 
 @author: heroname
 """
-
-from problem_2 import student_list
+from problem_1 import student
 
 class student_list():
     
