@@ -1,41 +1,92 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Sat Mar 16 22:39:27 2019
-
-@author: heroname
+889418042
+Brianna Sharpe
+2
 """
-from problem_1 import student
 
-class student_list(list):
-    pass # placeholder, no executed code
-    
-def main():
-    student_data = student_list()
-    
-    num_students = int(input("Number of students: "))
-    
-    for a in range(int(num_students)):
-        temp_list = []
-        
-        data = input("Student data: ")
-        
-        # split data into sections
-        data_list = data.split(', ')
-        
-        for e in data_list:
-            # separate key and value from data sections
-            key, value = e.split(':')
-            # append to temp_list
-            temp_list.append(value)
-        # ---------- end for loop (data_list) ----------
-        # create student
-        a_student = student(temp_list)
-        # append student to student database
-        student_data.append(a_student)
-    # ---------- end for loop (range(int(num_students))) ----------
-    
-    print(student_data)
-    # ----- end main() -----
+from problem_1 import merge_keys
 
-main()
+class ShoppingCart(dict):
+    # define variables
+    unitPrices = {}
+    
+    def get_totalSales(self):
+        return self._totalSales
+    def set_totalSales(self, totalSales):
+        self._totalSales = totalSales
+    totalSales = property(get_totalSales, set_totalSales)
+    
+    # reset cart
+    def empty_cart(self):
+        ShoppingCart.unitPrices = {}
+        ShoppingCart.totalSales = 0.0
+        
+    # add to cart
+    def addOrder(self, itemName, quantity):
+        if itemName in self: # item is already in cart
+            self[itemName] += quantity # update quantity
+            ShoppingCart.totalSales += ShoppingCart.unitPrices[itemName] * quantity # add item total to total sales
+        else: # item is not in cart
+            self[itemName] = quantity # add new item
+            ShoppingCart.totalSales = ShoppingCart.unitPrices[itemName] * quantity # add item total to total sales
+    
+    # add content of two carts
+    '''via cart = cart0 + cart1'''
+    '''def __add__(self, cart1, cart2):
+        ShoppingCart = merge_keys(cart1, cart2)
+        ShoppingCart.totalSales = cart1.totalSales + cart2.totalSales
+        return cart3'''
+'''
+carts = list()
+
+cart = ShoppingCart()
+cart.unitPrices['milk'] = 1.50
+cart.addOrder('milk', 2)
+cart.addOrder('milk', 2)
+
+print(cart)
+print(cart.totalSales)
+
+cart2 = ShoppingCart()
+cart2.unitPrices['cereal'] = 2
+cart2.addOrder('cereal', 2)
+cart2.addOrder('cereal', 2)
+
+print(cart)
+print(cart.totalSales)
+
+carts.append(cart)
+carts.append(cart2)
+
+cart3 = cart + cart2
+print(cart3)
+print(cart3.totalSales)'''
+
+
+
+
+'''
+def mergeKeys(dict1, dict2):
+    r_list = []
+    return r_list
+
+class ShoppingCart(dict):
+    def __init__(self):
+        super().__init() # call parent dict to empty itself
+        self._totalSales = 0.0
+
+    def __add__(self, other):
+        sCart = ShoppingCart()    
+        
+        # adding orders
+        keyList = mergeKeys(self, other)
+        for k in keyList:
+            q1 = self.get(k, 0.0)
+            q2 = other.get(k, 0.0)
+            q = q1 + q2
+            sCart[k] = q
+        
+        # adding totalSales
+        sCart._totalSales = self._totalSales + other._totalSales
+        return sCart
+'''
